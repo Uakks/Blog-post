@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{#    fonts    #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+{#    styles    #}
+    <meta charset="UTF-8">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <title>BlogPost</title>
+</head>
+<body>
+<header>
+    <nav>
+    <img src="{% static 'assets/Blog_icon.png'%}" alt="Logo" class="logo">
+    <div>
+        <ul>
+            <li>Ratings</li>
+            <li>Contacts</li>
+            <li>Help</li>
+        </ul>
+    </div>
+    {% if user.is_authenticated %}
+    	<div class="login">
+            <a href="profile/{{ user.id }}">Profile</a>
+        </div>
+        <div class="login">
+            <a href="logout">Logout</a>
+        </div>
+    {% else %}
+    <div class="login">
+        <a href="login">Login</a>
+    </div>
+    <div class="register">
+        <a href="register">Register</a>
+    </div>
+    {% endif %}
+    </nav>
+</header>
+    <div class="main-info">
+        <div class="button">
+            <a href="newpost" class="newpost-button">New Post</a>
+        </div>
+
+        <div class="heading-text">
+            <div class="content">
+                <h1 class="main-header">Main Feed</h1>
+            </div>
+        </div>
+
+    </div>
+    <div>
+    {% for post in posts reversed %}
+        <div class="post-block">
+            <a class="post-links" href="post/{{ post.id }}">
+                <h2 class="title">{{ post.title }}</h2>
+                <h4 class="username">Author: {{ post.username }}</h4>
+                <h5 class="time">{{ post.created_at }}</h5>
+                <p class="text">{{ post.main_post|truncatechars:100 }}</p>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>

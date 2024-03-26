@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'log-reg.css' %}">
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="register" method="post">
+    {% csrf_token %}
+    <h2>Registration form</h2>
+    {% for message in messages %}
+    <h5 class="message">{{ message }}</h5>
+    {% endfor %}
+    <div class="register-form">
+        <label> First name: <br>
+            <input type="text" name="firstname"> <br>
+        </label>
+        <label> Last name: <br>
+            <input type="text" name="lastname"> <br>
+        </label>
+        <label> Username: <br>
+            <input type="text" name="username"> <br>
+        </label>
+        <label> E-mail: <br>
+            <input type="email" name="email"> <br>
+        </label>
+        <label> Password: <br>
+            <input type="password" name="password"> <br>
+        </label>
+        <label> Phone number: <br>
+            <input type="number" name="phone_number"> <br>
+        </label>
+        <label> Repeat password: <br>
+            <input type="password" name="password2"> <br>
+        </label>
+        <input type="submit" value="Register">
+    </div>
+</form>
+</body>
+</html>

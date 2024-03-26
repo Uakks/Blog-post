@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'post-style.css' %}" rel="stylesheet">
+    <title>{{ posts.title }}</title>
+</head>
+<body>
+    <div>
+        <div class="post-block">
+            <h2 class="title">{{ posts.title }}</h2>
+            <h5 class="time">{{ posts.created_at }}</h5>
+            <p class="text">{{ posts.main_post|linebreaks }}</p>
+        </div>
+    </div>
+    {% for message in messages %}
+    	<h5 class="message">{{ message }}</h5>
+    {% endfor %}
+
+    <footer class="main-footer">
+        <a href="/">Back</a>
+        <a href="{{ posts.id }}/editpost">Edit</a>
+        <form action="{{ posts.id }}/deletepost" method="post">
+            {% csrf_token %}
+            <input type="submit" class="delete-main" value="Delete">
+        </form>
+    </footer>
+</body>
+</html>

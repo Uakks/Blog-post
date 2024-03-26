@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'newpost-style.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Add post</title>
+</head>
+<body>
+    <header class="head"><a href="/" class="back-button">Back</a></header>
+    <form method="POST" action="newpost" class="main-form">
+        {% csrf_token %}
+        <p class="label-text"> Title: </p>
+            <textarea name="title" cols="25" rows="3" placeholder="Write title of your post"></textarea> <br>
+        <p class="label-text"> Content: </p>
+            <textarea name="content" cols="60" rows="20" placeholder="Share your ideas, opinions and thoughts"></textarea><br>
+        <input type="submit" class="button" value="Post">
+    </form>
+</body>
+</html>

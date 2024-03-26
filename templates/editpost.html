@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {#    fonts    #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+{#    styles    #}
+    <meta charset="UTF-8">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'newpost-style.css' %}" rel="stylesheet">
+    <title>Edit Post</title>
+</head>
+<body>
+    <header class="head"><a href="/post/{{ current_post.id }}" class="back-button">Back</a></header>
+    <form method="post" action="editpost" class="main-form">
+        {% csrf_token %}
+        <p class="label-text"> Title: </p>
+            <textarea name="title" cols="25" rows="3">{{ current_post.title }}</textarea> <br>
+        <p class="label-text"> Content: </p>
+            <textarea name="content" cols="60" rows="20">{{ current_post.main_post }}</textarea><br>
+        <input type="submit" value="Edit">
+    </form>
+</body>
+</html>

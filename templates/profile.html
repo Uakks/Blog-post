@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'profile.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <nav>
+    <img src="{% static 'assets/Blog_icon.png'%}" alt="Logo" class="logo">
+    <div>
+        <ul>
+            <li>Ratings</li>
+            <li>Contacts</li>
+            <li>Help</li>
+        </ul>
+    </div>
+    {% if user.is_authenticated %}
+    	<div class="login">
+            <a href="/">Main feed</a>
+        </div>
+        <div class="login">
+            <a href="/logout">Logout</a>
+        </div>
+    {% else %}
+    <div class="login">
+        <a href="login">Login</a>
+    </div>
+    <div class="register">
+        <a href="register">Register</a>
+    </div>
+    {% endif %}
+    </nav>
+</header>
+
+
+{# There will be div with whole information about user -> #}
+{# -> like last login, created day, age, status, bio, name, surname, date of birth #}
+    <div class="main-profile">
+        <div class="main-profile-image">
+
+        </div>
+        <div class="main-profile-information">
+
+        </div>
+    </div>
+
+    <div class="main-info">
+        <div class="button">
+            <a href="/newpost" class="newpost-button">New Post</a>
+        </div>
+
+        <div class="heading-text">
+            <h1 class="main-header">{{ user.username }}'s posts</h1>
+        </div>
+    </div>
+
+    {% for post in posts reversed %}
+    	<div class="post-block">
+            <a class="post-links" href="/post/{{ post.id }}">
+                <h2 class="title">{{ post.title }}</h2>
+                <h5 class="time">{{ post.created_at }}</h5>
+                <p class="text">{{ post.main_post|truncatechars:100 }}</p>
+            </a>
+        </div>
+    {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+html, body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.message {
+    color: rgba(0,52,255,0.96)
+}
+
+form {
+    border: #214809 solid 5px;
+    border-radius: 30px;
+    padding: 0 25px 25px 25px;
+    background: rgba(62, 159, 49, 0.96);
+    display: block;
+    text-align: center;
+}
+
+label input{
+    margin-top: 5px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+input[type=submit] {
+    border-radius: 10px;
+}
